@@ -7,30 +7,30 @@ ld
 ENTRY(_start)
 
 SECTIONS {
-  /* Place .text in Flash at address 0x00000000 */
+  Place .text in Flash at address 0x00000000 
   .text 0x00000000 : {
-    *(.text*)
+    (.text)
   }
 
-  /* Place .data in SRAM at address 0x10000000 */
+  Place .data in SRAM at address 0x10000000 
   .data 0x10000000 : {
-    *(.data*)
+    (.data)
   }
 
-  /* Place .bss after .data in SRAM */
+  Place .bss after .data in SRAM 
   .bss : {
-    *(.bss*)
-    *(COMMON)
+    (.bss)
+    (COMMON)
   }
 }
 
 
-## 📌 Explanation: Flash vs. SRAM Address Separation
+ 📌 Explanation: Flash vs. SRAM Address Separation
 
 | Section          | Typical Location         | Reason                                                                                     |
 | ---------------- | ------------------------ | ------------------------------------------------------------------------------------------ |
 | .text        | Flash(`0x00000000`) | Contains program instructions — non-volatile storage (doesn’t get erased on power off).    |
-| .data / .bss | SRAM*(`0x10000000`)  | Holds initialized (data) and uninitialized (bss) variables — needs fast read/write access.|
+| .data / .bss | SRAM*(`0x10000000`) | Holds initialized (data) and uninitialized (bss) variables — needs fast read/write access.|
 
 🔍 Why are addresses split?
 
